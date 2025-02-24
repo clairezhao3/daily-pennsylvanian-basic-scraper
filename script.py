@@ -23,13 +23,20 @@ def scrape_data_point():
     Returns:
         str: The headline text if found, otherwise an empty string.
     """
+    
     req = requests.get("https://www.thedp.com/section/opinion", headers=headers)
     loguru.logger.info(f"Request URL: {req.url}")
     loguru.logger.info(f"Request status code: {req.status_code}")
 
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
-        target_element = soup.find("a", class_="standard-link")
+        # Step 1: Find the first 'div' that likely contains an article (based on screenshot/HTML)
+        article_div = soup.find("div", class_="row section-article")
+
+        # Step 2: Within that 'div', find the first link with class 'standard-link'
+        if article_div:
+            target_element = article_div.find("a", class_="standard-link")
+        
         data_point = "" if target_element is None else target_element.text
         loguru.logger.info(f"Data point: {data_point}")
         return data_point
