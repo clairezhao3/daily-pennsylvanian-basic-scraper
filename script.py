@@ -14,13 +14,16 @@ import loguru
 
 
 def scrape_data_point():
+    headers = {
+    "User-Agent": "cis3500-scraper"
+    }
     """
     Scrapes the main opinion article from The Daily Pennsylvanian opinion page.
 
     Returns:
         str: The headline text if found, otherwise an empty string.
     """
-    req = requests.get("https://www.thedp.com/section/opinion")
+    req = requests.get("https://www.thedp.com/section/opinion", headers=headers)
     loguru.logger.info(f"Request URL: {req.url}")
     loguru.logger.info(f"Request status code: {req.status_code}")
 
