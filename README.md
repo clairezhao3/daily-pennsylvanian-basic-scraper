@@ -29,7 +29,7 @@ The workflow defined in `.github/workflows/scrape.yaml` runs on a defined schedu
 
 The workflow schedule is configured with [cron syntax](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) to run:
 
-- Every day at 8PM UTC
+- Twice a day, once at 8 AM UTC and once at 8 PM UTC
 
 ### My Interpretation of cron syntax
 The cron expression '0 20 * * *' schedules the job to run every day at 8:00 PM UTC. It is made up of five parts, which represent: minute, hour, day of the month, month, and day of the week. Each asterisk in the expression indicates that it applies to any value of that field (in this case, corresponding to "any day", "any month", and "any weekday").
