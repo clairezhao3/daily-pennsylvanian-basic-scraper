@@ -10,6 +10,13 @@ Tools like GitHub Actions, GitLab CI and others make git scraping adaptable to d
 
 This template includes a sample workflow to demonstrate the core git scraping capabilities. Read on to learn how to customize it!
 
+### Modification:
+This project is a web scraper designed to extract the top headline from The Daily Pennsylvanian website. In my latest modification, I adapted the scraper to target the Opinion section and extract the top opinion article. This change was motivated by the need to track headline trends in a specific content area of the site.
+* I changed the URL from the homepage (e.g., "https://www.thedp.com") to the Opinion page (e.g., "https://www.thedp.com/opinion") so that the scraper fetches the relevant section directly.
+* For the Opinion page, I identified the unique CSS class or HTML structure that corresponds to the top opinion article. In my case, I replaced "subsection-list" in the soup.find() call.
+*
+* "frontpage-link" with "standard-link" 
+
 ## Overview
 
 The workflow defined in `.github/workflows/scrape.yaml` runs on a defined schedule to:
