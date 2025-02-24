@@ -5,6 +5,7 @@ on:
     branches: [main]
   schedule:
     - cron: '0 8,20 * * *'  # 📅 Scrape twice a day at 8 am and 8 pm UTC, see crontab.guru for help
+    workflow_dispatch:
 
 name: Scrape Update 🔄
 jobs:
