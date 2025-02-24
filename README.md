@@ -31,6 +31,10 @@ The workflow schedule is configured with [cron syntax](https://docs.github.com/e
 
 - Every day at 8PM UTC
 
+### My Interpretation of cron syntax
+The cron expression '0 20 * * *' schedules the job to run every day at 8:00 PM UTC. It is made up of five parts, which represent: minute, hour, day of the month, month, and day of the week. Each asterisk in the expression indicates that it applies to any value of that field (in this case, corresponding to "any day", "any month", and "any weekday").
+
+
 This once-daily scraping is a good rule-of-thumb, as it is generally respectful of the target website, as it does not contribute to any measurable burden to the site's resources.
 
 You can use [crontab.guru](https://crontab.guru/) to generate your own cron schedule.
