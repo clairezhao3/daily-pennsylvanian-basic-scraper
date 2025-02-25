@@ -31,7 +31,7 @@ def scrape_data_point():
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
         # Step 1: Find the first 'div' that likely contains an article (based on screenshot/HTML)
-        article_div = soup.find("div", class_="row section-article")
+        article_div = soup.find("div", class_="col-md-8")
 
         # Step 2: Within that 'div', find the first link with class 'standard-link'
         if article_div:
