@@ -31,11 +31,11 @@ def scrape_data_point():
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
         # Step 1: Find the first 'div' that likely contains an article (based on screenshot/HTML)
-        article_div = soup.find("div", class_="col-md-8")
+        container = soup.find("div", class_="container")
 
         # Step 2: Within that 'div', find the first link with class 'standard-link'
-        if article_div:
-            target_element = article_div.find("a", class_="standard-link")
+        if container:
+            target_element = container.find("h3", class_="standard-link")
         
         data_point = "" if target_element is None else target_element.text
         loguru.logger.info(f"Data point: {data_point}")
