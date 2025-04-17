@@ -1,7 +1,4 @@
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 20 * * *'
+
 on:
   push:
     branches: [main]
@@ -10,6 +7,8 @@ on:
   schedule:
     - cron: '0 8,20 * * *'  # 📅 Scrape twice a day at 8 am and 8 pm UTC, see crontab.guru for help
   workflow_dispatch:
+    schedule:
+    - cron: '0 20 * * *'
 
 name: Scrape Update 🔄
 jobs:
