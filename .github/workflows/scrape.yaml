@@ -35,7 +35,7 @@ jobs:
       - name: 📦 Install pipenv
         run: |
           python -m pip install --upgrade pipenv wheel
-
+"""
       - name: 🔄 Check pipenv cache before installing dependencies
         id: cache-pipenv
         uses: actions/cache@v4
@@ -48,6 +48,7 @@ jobs:
         run: |
           touch Pipfile
           pipenv install --deploy --dev
+          """
 
       - name: 🕵️‍♂️ Scrape content and output
         run: |
