@@ -24,6 +24,15 @@ jobs:
       repository-projects: write
 
     steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
       - name: 📥 Check out repository code
         uses: actions/checkout@v4
 
@@ -53,10 +62,26 @@ jobs:
         run: |
          touch Pipfile
           pipenv install --deploy --dev
+      
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 loguru
 
       - name: 🕵️‍♂️ Scrape content and output
         run: |
           pipenv run python ./script.py
+      
+      - name: Debug print JSON
+        run: |
+          echo "=== File tree ==="
+          ls -R .
+          echo "=== New JSON contents ==="
+          cat data/daily_pennsylvanian_headlines.json
+
+      - name: Commit & push JSON
+        run: |
+          git add data/daily_pennsylvanian_headlines.json
+          git diff --cached --quiet || git commit -m "ci: update DP headlines JSON"
+          git push
 
       - name: 🚀 Commit generated logs
         uses: EndBug/add-and-commit@v9
