@@ -65,6 +65,7 @@ if __name__ == "__main__":
     loguru.logger.info("Starting scrape")
     try:
         data_point = scrape_data_point()
+        print("SCRAPED HEADLINE →", repr(data_point))
     except Exception as e:
         loguru.logger.error(f"Failed to scrape data point: {e}")
         data_point = None
